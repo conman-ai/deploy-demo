@@ -30,6 +30,13 @@ pipeline {
             }
         }
 
+        // stage('Checkout') {
+        //     steps {
+        //         git branch: 'main',
+        //         url: 'https://github.com/conman-ai/deploy-demo.git'
+        //     }
+        // }
+
         stage('Build Docker Image') {
             steps {
                 script {
