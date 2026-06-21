@@ -25,7 +25,7 @@ interface Stage {
 })
 export class AppComponent implements OnInit, OnDestroy {
   activeStage = 2;
-  deployments = 14;
+  deployments = 0;
   clock = new Date();
   deployment: DeploymentInfo = { version: 'local-dev', commit: 'working-tree', builtAt: 'Not built yet' };
   private timer?: ReturnType<typeof setInterval>;
