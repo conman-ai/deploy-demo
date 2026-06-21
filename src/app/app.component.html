@@ -1,0 +1,85 @@
+<main class="shell">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="Release Orbit home">
+      <span class="brand-mark"><span></span></span>
+      <span>RELEASE ORBIT</span>
+    </a>
+    <div class="nav-meta">
+      <span class="live-dot"></span>
+      <span>System healthy</span>
+      <span class="clock">{{ clock | date:'HH:mm:ss' }} IST</span>
+    </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <p class="kicker">Deployment evolution / Live demonstration</p>
+      <h1>From careful clicks<br>to confident commits.</h1>
+      <p class="intro">One application. Three release strategies. See how automation turns a fragile checklist into a repeatable delivery system.</p>
+      <div class="hero-actions">
+        <button class="primary" (click)="simulateDeployment()">
+          <span>Run next deployment</span><span aria-hidden="true">&#8594;</span>
+        </button>
+        <div class="version">
+          <span>LIVE VERSION</span>
+          <strong>{{ deployment.version }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="orbit-panel" aria-label="Animated deployment status">
+      <div class="grid-lines"></div>
+      <div class="orbit orbit-one"><i></i></div>
+      <div class="orbit orbit-two"><i></i></div>
+      <div class="core">
+        <span class="pulse"></span>
+        <strong>{{ deployments }}</strong>
+        <small>DEPLOYMENTS</small>
+      </div>
+      <span class="coordinate coordinate-a">BUILD / {{ deployment.commit | slice:0:8 }}</span>
+      <span class="coordinate coordinate-b">NGINX :80</span>
+    </div>
+  </section>
+
+  <section class="journey" aria-labelledby="journey-title">
+    <div class="section-heading">
+      <div>
+        <p class="kicker">The journey</p>
+        <h2 id="journey-title">Three ways to ship.</h2>
+      </div>
+      <p>Select a stage to inspect its release flow.</p>
+    </div>
+
+    <div class="stage-grid">
+      <button
+        *ngFor="let stage of stages; let i = index"
+        class="stage-card"
+        [class.active]="activeStage === i"
+        [style.--accent]="stage.accent"
+        (click)="selectStage(i)">
+        <span class="stage-top"><span>{{ stage.number }}</span><span>{{ stage.eyebrow }}</span></span>
+        <h3>{{ stage.title }}</h3>
+        <p>{{ stage.description }}</p>
+        <span class="card-action">Explore flow <span aria-hidden="true">&#8599;</span></span>
+      </button>
+    </div>
+
+    <div class="flow" [style.--accent]="stages[activeStage].accent">
+      <div class="flow-label">
+        <span>ACTIVE FLOW</span>
+        <strong>{{ stages[activeStage].title }}</strong>
+      </div>
+      <ol>
+        <li *ngFor="let step of stages[activeStage].steps; let i = index">
+          <span>{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <strong>{{ step }}</strong>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <span>Built {{ deployment.builtAt }}</span>
+    <span>Angular &middot; Docker &middot; Nginx &middot; Jenkins</span>
+  </footer>
+</main>
