@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 interface DeploymentInfo {
+  buildId: string;
   version: string;
   commit: string;
   builtAt: string;
@@ -27,7 +28,13 @@ export class AppComponent implements OnInit, OnDestroy {
   activeStage = 2;
   deployments = 0;
   clock = new Date();
-  deployment: DeploymentInfo = { version: 'local-dev', commit: 'working-tree', builtAt: 'Not built yet' };
+deployment: DeploymentInfo = {
+  buildId: 'MANUAL',
+  version: 'local-dev',
+  commit: 'working-tree',
+  builtAt: 'Not built yet'
+};
+
   private timer?: ReturnType<typeof setInterval>;
 
   readonly stages: Stage[] = [

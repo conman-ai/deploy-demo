@@ -8,7 +8,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'release-orbit'
         CONTAINER_NAME = 'release-orbit-app'
-        HOST_PORT = '9698'
+        HOST_PORT = '8080'
     }
 
     options {
@@ -16,11 +16,14 @@ pipeline {
     }
 
     stages {
-        stage('Clean Workspace') {
-    steps {
-        cleanWs()
-    }
-}
+
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        
         stage('Checkout') {
             steps {
                 checkout scm
@@ -35,6 +38,7 @@ pipeline {
                 }
                 sh '''
                     docker build \
+                      --build-arg BUILD_ID="${BUILD_NUMBER}" \
                       --build-arg APP_VERSION="build-${BUILD_NUMBER}" \
                       --build-arg COMMIT_SHA="${SHORT_COMMIT}" \
                       --build-arg BUILD_DATE="${BUILD_DATE}" \

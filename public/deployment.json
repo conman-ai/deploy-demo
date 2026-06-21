@@ -1,4 +1,5 @@
 {
+  "buildId": "MANUAL",
   "version": "local-dev",
   "commit": "working-tree",
   "builtAt": "local development"

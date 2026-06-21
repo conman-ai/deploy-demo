@@ -7,10 +7,11 @@ RUN npm install --no-audit --no-fund
 COPY . .
 
 ARG APP_VERSION=manual-local
+ARG BUILD_ID=MANUAL
 ARG COMMIT_SHA=working-tree
 ARG BUILD_DATE=local
-RUN printf '{\n  "version": "%s",\n  "commit": "%s",\n  "builtAt": "%s"\n}\n' \
-    "$APP_VERSION" "$COMMIT_SHA" "$BUILD_DATE" > public/deployment.json \
+RUN printf '{\n  "buildId": "%s",\n  "version": "%s",\n  "commit": "%s",\n  "builtAt": "%s"\n}\n' \
+    "$BUILD_ID" "$APP_VERSION" "$COMMIT_SHA" "$BUILD_DATE" > public/deployment.json \
     && npm run build
 
 FROM nginx:1.27-alpine
