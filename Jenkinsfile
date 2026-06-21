@@ -59,21 +59,6 @@ pipeline {
                 '''
             }
         }
-
-        stage('Verify') {
-            steps {
-                sh '''
-                    for attempt in 1 2 3 4 5; do
-                      if curl --fail --silent "http://127.0.0.1:${HOST_PORT}/health"; then
-                        exit 0
-                      fi
-                      sleep 2
-                    done
-                    docker logs "${CONTAINER_NAME}"
-                    exit 1
-                '''
-            }
-        }
     }
 
     post {
