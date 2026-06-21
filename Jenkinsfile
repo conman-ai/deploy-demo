@@ -8,7 +8,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'release-orbit'
         CONTAINER_NAME = 'release-orbit-app'
-        HOST_PORT = '8080'
+        HOST_PORT = '9698'
     }
 
     options {
