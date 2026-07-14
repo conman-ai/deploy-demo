@@ -1,7 +1,16 @@
+name: Deploy QA
+
 on:
   push:
     branches:
       - release
 
 jobs:
-  de
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Deploy to relase
+        run: echo "Deploying release"
