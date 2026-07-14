@@ -1,0 +1,17 @@
+name: Deploy QA
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy to test
+        run: echo "Deploying test"
