@@ -118,3 +118,5 @@ Then open `http://localhost:4200`.
 | Webhook | Git push | High | A source change automatically starts delivery |
 
 For a clean demonstration, keep the same server, repository, Dockerfile, and application throughout. Change only how the deployment starts.
+
+commiting to see the changes
