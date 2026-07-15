@@ -1,0 +1,16 @@
+name: Deploy for release push from test branch
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Deploy to relase
+        run: echo "Deploying release"
