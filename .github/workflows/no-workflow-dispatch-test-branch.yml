@@ -1,16 +1,17 @@
-name: Deploy QA
+name: Deploy without workflow dispatch in test
 
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
 
       - name: Deploy to test
         run: echo "Deploying test"
