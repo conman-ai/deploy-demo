@@ -1,4 +1,4 @@
-name: Deploy QA
+name: Deploy just tsting on test branch
 
 on:
   workflow_dispatch:
